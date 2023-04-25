@@ -58,8 +58,8 @@
     <div class="bg-tour-detail-user p-1">
         <div class="content container mb-4" v-if="this.tour._id != null">
             <div class="row mb-5">
-                <div class="col-7">
-                    <img :src="'../src/assets/images/tours/' + this.tour.avt" class="img-detail-touts rounded-4"/>
+                <div class="col-6">
+                    <img :src="'../src/assets/images/tours/' + this.tour.avt" class="img-detail-touts"/>
                 </div>
                 <div class="col-5 d-flex flex-column">
                     <div class="fs-3 tour-name">
@@ -204,10 +204,12 @@
     }
 
     .w-80 {
-        width: 80%;
+        width: 50%;
     }
     .img-detail-touts{
-        width: 80%;
+        margin-left: 26%;
+        border-radius: 6px;
+        width: 52%;
     }
     .bg-tour-detail-user{
         background-color:#a2bcbc;

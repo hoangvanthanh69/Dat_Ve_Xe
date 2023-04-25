@@ -23,7 +23,7 @@
 
 <template>
     <div class="login-register-order">
-        <div class="content container mb-4 ">
+        <div class="content container">
             <div class="text-center mb-3">
                 <h5 class="fs-4 fw-bold text-light px-2 pt-4">Lịch sử vé</h5>
             </div>
@@ -65,6 +65,5 @@
 <style>
     .login-register-order{
         background-color: #3d7879;
-        padding-bottom: 15px;
     }
 </style>

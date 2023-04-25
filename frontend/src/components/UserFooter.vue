@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <footer>
+    <footer class="footer">
         <div class="container d-flex mt-3 justify-content-between text-center">
             <div class="col-4 px-4">
                 <h5 class="mb-3 text-center">Hỗ trợ khách hàng</h5>
@@ -52,5 +52,8 @@
 </template>
 
 <style scoped>
-
+    .footer{
+        background-color: rgba(210, 177, 177, 0.3);
+        padding-top: 10px;
+    }
 </style>

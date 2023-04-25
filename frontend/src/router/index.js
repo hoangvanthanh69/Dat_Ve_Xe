@@ -48,6 +48,11 @@ const routes = [
         children: [
             {
                 path: "",
+                name: "StatisticaManager",
+                component: () => import("@/views/admin/StatisticaManager.vue"),
+            },
+            {
+                path: "product",
                 name: "productManager",
                 component: () => import("@/views/admin/ProductsManager.vue"),
             },

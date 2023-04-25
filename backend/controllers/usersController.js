@@ -13,7 +13,7 @@ exports.login = async (req, res, next) => {
     try {
         const user = await User.findOne({ email: req.body.email });
         if (!user) {
-            const err = new Error('Account or Password is not correct!');
+            const err = new Error('Tài khoản hoặc mật khẩu không chính xác!');
             err.statusCode = 400;    
             return next(err);
         }
@@ -21,7 +21,7 @@ exports.login = async (req, res, next) => {
             if (req.body.password === user.password) {
                 res.status(200).send(user)
             } else {
-                const err = new Error('Account or Password is not correct!');
+                const err = new Error('Tài khoản hoặc mật khẩu không chính xác!');
                 err.statusCode = 400;    
                 return next(err);
             }

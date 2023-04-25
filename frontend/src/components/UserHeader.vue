@@ -18,8 +18,8 @@
 </script>
 
 <template>
-    <header class="header">
-        <div class="container py-1">
+    <header class="header bg-user-home">
+        <div class="container py-1 ">
             <div class="d-flex justify-content-around align-items-center">
                 <router-link to="/">
                     <img class="img-logo-book-ticket" src="@/assets/images/logo.png" height="60"/>
@@ -44,7 +44,8 @@
                         Lịch sử
                     </router-link>
                     <span @click="onLogout" v-if="loginStore.isLogin === true"  class="ms-3 fw-bold nav-link" style="cursor: pointer;">
-                        Đăng xuất
+                        <span class="fw-bold pe-2 text-danger">{{this.loginStore.user.name}}</span>
+                        <i class="fa-solid fa-right-from-bracket text-success"></i>
                     </span>
                 </nav>
             </div>
@@ -54,7 +55,7 @@
 
 <style scoped>
     .header {
-        background-color: rgba(255, 255, 255, 0.3);
+        background-color: rgba(210, 177, 177, 0.3);
         backdrop-filter: blur(10px);
     }
 

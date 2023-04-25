@@ -38,7 +38,7 @@
 </script>
 
 <template>
-    <div class="content container mb-4 row ">
+    <div class="content container mb-4 row">
         <div class="p-2 col-3">
             <div class="fw-bold ps-3 mt-2">Sắp xếp theo:</div>
             <div class="form-check mx-3 ps-5">

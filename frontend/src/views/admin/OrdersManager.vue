@@ -20,38 +20,50 @@
 
 <template>
     <div>
-        <h5 class="fw-bold my-3">Quản lý tuyến đường</h5>  
+        <h5 class="fw-bold my-3">Quản lý đặt vé</h5>  
         <table class="table table-bordered bg-light">
             <thead>
                 <tr class="table-secondary text-center">
+                    <th>STT</th>
                     <th>Khách hàng</th>
+                    <th>Số điện thoại</th>
+                    <th>Địa chỉ</th>
+                    <th>Thời gian Đặt</th>
                     <th>Tuyến đường</th>
+                    <th>Giờ khởi hành</th>
+                    <th>Ngày khởi hành</th>
                     <th>Số lượng</th>
-                    <th>Thời gian</th>
                     <th>Tổng tiền</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(item, i) in this.orders" :key="item._id">
+                <tr v-for="(item, i) in this.orders" :key="item._id" class="text-center">
+                    <td class="">{{ i+1 }}</td>
+                    <td class="align-middle text-success col-2">
+                        {{item.name}}
+                    </td>
+                    <td class="align-middle col-1">
+                        {{item.phone}}
+                    </td>
                     <td class="align-middle col-3">
-                        <div class="fw-bold p-2 text-success">{{item.name}}</div>
-                        <div class="p-2"><i class="fa-solid fa-phone text-danger"></i> {{item.phone}}</div>
-                        <div class="p-2"><i class="fa-solid fa-location-dot text-primary"></i> {{item.address}}</div>
+                        {{item.address}}
                     </td>
-
-                    <td class="align-middle col-4">
-                        <div class="fw-bold prod-name p-2 text-success">{{item.tourId.name}}</div>
-                        <div class="p-2">Ngày khởi hành: {{item.tourId.start}}</div>
-                        <div class="p-2">Thời gian: {{item.tourId.day}} giờ</div>
-                    </td>
-
-                    <td class="align-middle text-center col-1">{{item.adult > 0 ? item.adult : 0}}</td>
-
                     <td class="text-center align-middle col-2">
                         {{new Date(Date.parse(item.createdAt)).toLocaleString()}}
                     </td>
-                    
-                    <td class="text-center align-middle col-2 text-danger">
+                    <td class="align-middle text-success col-2">
+                        {{item.tourId.name}}
+                    </td>
+                    <td class="col-1">
+                        {{item.tourId.day}} giờ
+                    </td>
+                    <td class="col-2">
+                       {{item.tourId.start}}
+                    </td>
+                    <td class="align-middle text-center ">
+                        {{item.adult > 0 ? item.adult : 0}}
+                    </td>
+                    <td class="text-center align-middle text-danger">
                         {{new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'})
                             .format(item.total)
                         }}

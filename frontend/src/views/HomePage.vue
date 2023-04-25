@@ -1,30 +1,75 @@
 <script>
-
+    import TourService from '@/services/tour.service';
+    export default {
+        data() {
+            return {
+                tours: [],
+                filter: ''
+            }
+        },
+        methods: {
+            async getData() {
+                this.tours = await TourService.getAll();
+            },
+        },
+        computed: {
+            filteredTours() {
+                return this.tours.filter(tour => tour.name.toLowerCase().includes(this.filter.toLowerCase()));
+            }
+        },
+        mounted() {
+            this.getData();
+        },
+    }
 </script>
 
 <template>
     <div class="slider-container position-relative">
         <img src="@/assets/images/contact-img.jpg" class="d-block">
     </div>
+    
     <form class="search-form text-center">
         <div class="container">
             <h2 class="text-light">Nhà xe cam kết 100% giữ vé cho khách</h2>
         </div>
-        <div class="container row mt-3">
-            <div class="col-3 adrres-users">
-                <input type="text" class="form-control" placeholder="Nơi xuất phát">
-            </div>
-            <div class="col-3">
-                <input type="text" class="form-control" placeholder="Nơi Đến">
-            </div>
-            <div class="col-3">
-                <input type="date" class="form-control" placeholder="Ngày đi">
-            </div>
-            <div class="col-3">
-                <a class="btn btn-success search-infor">Tìm chuyến</a>
-            </div>
+        <div class="input-group input-group-lg p-3 rounded-4">
+            <input type="text" class="form-control" placeholder="Tìm kiếm..." v-model="filter">
         </div>
     </form>
+    <div class="container mb-4">
+        <div class="row g-3 mt-1" v-if="filter != 0">
+            <div v-for="tour in filteredTours" :key="tour.id" class="col-3 p-1" v-if="filteredTours != 0">
+                <div class="card overflow-hidden border-0 h-100">
+                    <router-link :to="'/tours/' + tour._id">
+                        <img :src="'../src/assets/images/tours/' + tour.avt" class="card-img-top"/>
+                    </router-link>
+                    <div class="card-body p-2 d-flex flex-column">
+                        <div class="prod-name mt-1 mb-2">{{tour.name}}</div>
+                        <div><span>Thời gian: </span>{{tour.day }}</div>
+                        <div>
+                            <span>Khởi hành: </span>
+                            {{new Date(tour.start).toLocaleDateString("vi-VN")}}
+                        </div>
+                        <div class="prod-price mt-auto">
+                            {{new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'})
+                                .format(tour.price)
+                            }}
+                        </div>
+                        <div class="mt-2">
+                            <router-link :to="'/tours/' + tour._id" class="btn btn-warning btn-sm w-100 fs-6">
+                                Xem chi tiết
+                            </router-link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center" v-else="filteredTours == 0">
+                <p class="fw-bold fs-4 text-danger">
+                    Không tìm thấy!
+                </p> 
+            </div>
+        </div>
+    </div>
 </template>
 
 <style scoped>
@@ -50,18 +95,32 @@
         transform: translate(-50%, -50%);
         z-index: 3;
     }
-
-    .search-form .input-group {
-        width: 50vw;
-        background-color: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(5px);
+    .card:hover {
+        box-shadow: 0 2px 4px 0 #0e1e2533, 0 2px 16px 0 #0e1e2599;
     }
-
-    .img-logo-book-ticket{
-        border-radius: 10px;
+    .prod-name {
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1.1;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
     }
-
-    button.search-infor {
-        margin-right: 50px;
+    .prod-price {
+        font-size: 19px;
+        font-weight: 700;
+        color: red;
     }
+    img.img-car-tours {
+        height: 160px;
+        padding-top: 14px;
+        object-fit: contain;
+    }
+    img.card-img-top {
+        height: 160px;
+        padding-top: 14px;
+        object-fit: contain;
+    }
+    
 </style>
